@@ -214,6 +214,29 @@
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
     @keyframes heroZoom{0%{transform:scale(1.1)}100%{transform:scale(1)}}
     @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+
+    /* ── Batch Popup ── */
+    .popup-overlay{position:fixed;inset:0;z-index:9000;background:rgba(10,4,8,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+    .popup-overlay.show{opacity:1;pointer-events:all}
+    .popup{background:var(--wine-dark);border-radius:18px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;border:1px solid rgba(200,160,75,.25);box-shadow:0 24px 64px rgba(0,0,0,.5);position:relative;transform:translateY(32px) scale(.95);transition:transform .4s var(--ease);scrollbar-width:none}.popup::-webkit-scrollbar{display:none}
+    .popup-overlay.show .popup{transform:translateY(0) scale(1)}
+    .popup__close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.4);border:none;color:rgba(247,241,230,.8);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .2s}
+    .popup__close:hover{background:rgba(0,0,0,.7);color:#fff}
+    .popup__img{width:100%;display:block;max-height:55vh;object-fit:contain;background:#000}
+    .popup__body{padding:1rem 1.2rem 1.2rem}
+    .popup__badge{display:inline-flex;align-items:center;gap:.5rem;padding:.28rem .8rem;background:rgba(200,160,75,.15);border:1px solid rgba(200,160,75,.35);border-radius:100px;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+    .popup__badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:blink 1.5s ease infinite}
+    .popup__title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--cream);line-height:1.2;margin-bottom:.4rem}
+    .popup__title em{font-style:italic;color:var(--gold)}
+    .popup__meta{font-size:.75rem;color:rgba(247,241,230,.5);margin-bottom:.8rem;display:flex;gap:.6rem 1rem;flex-wrap:wrap}
+    .popup__meta span{display:flex;align-items:center;gap:.35rem}
+    .popup__divider{height:1px;background:rgba(200,160,75,.15);margin-bottom:.9rem}
+    .popup__footer{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .popup__fee{color:rgba(247,241,230,.55);font-size:.75rem}
+    .popup__fee strong{display:block;font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--gold);line-height:1}
+    .popup__slots{font-size:.65rem;color:rgba(247,241,230,.35);margin-top:.2rem}
+    .popup__cta{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.5rem;background:var(--gold);color:var(--wine-dark);border-radius:8px;font-family:var(--font-body);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,transform .2s;box-shadow:0 4px 16px rgba(200,160,75,.3);white-space:nowrap}
+    .popup__cta:hover{background:var(--gold-soft);transform:translateY(-2px)}
   </style>
 </head>
 <body>
@@ -284,7 +307,7 @@
           <div class="hero__stat-label">Full Program</div>
         </div>
         <div>
-          <div class="hero__stat-num">&#8377;<span>19,999</span></div>
+          <div class="hero__stat-num">&#8377;<span>29,999</span></div>
           <div class="hero__stat-label">Course Fee</div>
         </div>
         <div>
@@ -298,6 +321,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- WHAT YOU GET -->
   <section class="gets" id="gets">
@@ -457,7 +481,7 @@
         <div class="fee__divider"></div>
         <div class="fee__includes">
           <div class="fee__include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>4 Days Intensive (1 Online + 3 Offline)</div>
-          <div class="fee__include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Full Hands-On Training</div>
+          <div class="fee__include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>All Training Materials &amp; Tools</div>
           <div class="fee__include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Certificate of Completion</div>
           <div class="fee__include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>100% Placement Assistance</div>
           <div class="fee__include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Exclusive Product Discounts</div>
@@ -507,6 +531,16 @@
         <p class="section-eyebrow">Join the Next Batch</p>
         <h2 class="section-title">Enroll <em>Now</em></h2>
         <p class="section-sub" style="margin:0 auto">Fill in your details and we will confirm your slot via WhatsApp. Only 5 seats per batch.</p>
+        <div style="margin-top:1.5rem;background:var(--off-white);border-radius:12px;padding:1.2rem 1.4rem;border:1px solid rgba(110,31,51,.1);display:inline-block;text-align:left;max-width:500px">
+          <p style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);margin-bottom:.8rem">&#128197; Upcoming Batch Details</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.6rem 2rem">
+            <div style="font-size:.82rem;color:var(--ink)"><span style="color:var(--muted)">Dates</span><br><strong>July 23 – 26, 2026</strong></div>
+            <div style="font-size:.82rem;color:var(--ink)"><span style="color:var(--muted)">Location</span><br><strong>Chennai</strong></div>
+            <div style="font-size:.82rem;color:var(--ink)"><span style="color:var(--muted)">Duration</span><br><strong>4 Days (1 Online + 3 Offline)</strong></div>
+            <div style="font-size:.82rem;color:var(--ink)"><span style="color:var(--muted)">Fee</span><br><strong style="color:var(--wine)">&#8377;19,999</strong></div>
+            <div style="font-size:.82rem;color:var(--ink)"><span style="color:var(--muted)">Slots</span><br><strong style="color:#c0392b">Only 5 Available</strong></div>
+          </div>
+        </div>
       </div>
       <div class="enroll__form">
         <div class="ef-row">
@@ -659,7 +693,47 @@
       efCsel.classList.remove('open');
       efCselDrop.style.display = 'none';
     });
+
+    /* ── Batch Popup ── */
+    var popup    = document.getElementById('batchPopup');
+    var popClose = document.getElementById('popupClose');
+    var popCTA   = document.getElementById('popupEnroll');
+    if (popup && popClose && popCTA) {
+      function closePopup(){ popup.classList.remove('show'); document.body.style.overflow=''; }
+      setTimeout(function(){ popup.classList.add('show'); document.body.style.overflow='hidden'; }, 3500);
+      popClose.addEventListener('click', closePopup);
+      popCTA.addEventListener('click', closePopup);
+      popup.addEventListener('click', function(e){ if(e.target===popup) closePopup(); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePopup(); });
+    }
+
   });
   </script>
+
+
+  <!-- BATCH POPUP -->
+  <div class="popup-overlay" id="batchPopup">
+    <div class="popup">
+      <button class="popup__close" id="popupClose">&#x2715;</button>
+      <img class="popup__img" src="https://res.cloudinary.com/dmr5kchzw/image/upload/v1783386651/IMG-20260706-WA0000_1.jpg_ygqskn.jpg" alt="Upcoming Detailing Training Batch" />
+      <div class="popup__body">
+        <div class="popup__badge">&#128197; Upcoming Batch</div>
+        <h2 class="popup__title">Complete Detailing <em>Training</em></h2>
+        <div class="popup__meta">
+          <span>&#128205; Chennai</span>
+          <span>&#128197; July 23, 24, 25 &amp; 26</span>
+          <span>&#9203; 4 Days</span>
+        </div>
+        <div class="popup__divider"></div>
+        <div class="popup__footer">
+          <div>
+            <div class="popup__fee">Fee <strong>&#8377;19,999</strong></div>
+            <div class="popup__slots">Only 5 slots available</div>
+          </div>
+          <a href="#enroll" class="popup__cta" id="popupEnroll">Enroll Now &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
