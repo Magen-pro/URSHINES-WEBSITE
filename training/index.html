@@ -540,6 +540,7 @@
             <div style="font-size:.82rem;color:var(--ink)"><span style="color:var(--muted)">Fee</span><br><strong style="color:var(--wine)">&#8377;19,999</strong></div>
             <div style="font-size:.82rem;color:var(--ink)"><span style="color:var(--muted)">Slots</span><br><strong style="color:#c0392b">Only 5 Available</strong></div>
           </div>
+          <button id="showBatchPopup" style="margin-top:1rem;padding:.6rem 1.2rem;background:var(--wine);color:#fff;border:none;border-radius:6px;font-family:var(--font-body);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s">&#128197; See Batch Details</button>
         </div>
       </div>
       <div class="enroll__form">
@@ -700,11 +701,13 @@
     var popCTA   = document.getElementById('popupEnroll');
     if (popup && popClose && popCTA) {
       function closePopup(){ popup.classList.remove('show'); document.body.style.overflow=''; }
-      setTimeout(function(){ popup.classList.add('show'); document.body.style.overflow='hidden'; }, 3500);
+      setTimeout(function(){ popup.classList.add('show'); document.body.style.overflow='hidden'; }, 4000);
       popClose.addEventListener('click', closePopup);
       popCTA.addEventListener('click', closePopup);
       popup.addEventListener('click', function(e){ if(e.target===popup) closePopup(); });
       document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePopup(); });
+      var showBtn = document.getElementById('showBatchPopup');
+      if (showBtn) showBtn.addEventListener('click', function(){ popup.classList.add('show'); document.body.style.overflow='hidden'; });
     }
 
   });
